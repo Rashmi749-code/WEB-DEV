@@ -15,7 +15,7 @@ def init_db():
         )
     ''')
     
-    # Add some starter data
+   
     destinations = [
         ('The Glass House', 'Iceland', '$450', 'Zen', 'https://images.unsplash.com/photo-1490750967868-88aa4486c946'),
         ('Amalfi Coast Villa', 'Italy', '$600', 'Vintage', 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963'),
@@ -28,4 +28,5 @@ def init_db():
 
 if __name__ == "__main__":
     init_db()
+
     print("Database Aura.db initialized with classy spots!")
