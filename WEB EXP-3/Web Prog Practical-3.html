@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #f8fafc;
+        }
+        .container {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            width: 400px;
+            text-align: center;
+        }
+        .hidden { display: none; }
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #334155;
+            border-radius: 8px;
+            background: #334155;
+            color: white;
+            cursor: pointer;
+            text-align: left;
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .option-btn:hover { background: #475569; }
+        .selected { border-color: #6366f1; background: #312e81; }
+        .main-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .main-btn:disabled { background: #475569; cursor: not-allowed; }
+        #progress-text { font-size: 0.9rem; color: #94a3b8; margin-bottom: 10px; }
+        #final-score { font-size: 3rem; color: #fbbf24; margin: 20px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="start-page">
+            <h1>Dev Quiz</h1>
+            <p>Test your knowledge on HTML, CSS, and JS.</p>
+            <button class="main-btn" onclick="startQuiz()">Start Quiz</button>
+        </div>
+
+        <div id="quiz-page" class="hidden">
+            <div id="progress-text"></div>
+            <h2 id="question-text"></h2>
+            <div id="options-box"></div>
+            <button id="next-btn" class="main-btn" onclick="nextQuestion()" disabled>Confirm Answer</button>
+        </div>
+
+        <div id="result-page" class="hidden">
+            <h1>Results</h1>
+            <div id="final-score"></div>
+            <p id="message"></p>
+            <button class="main-btn" onclick="location.reload()">Restart Quiz</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            { q: "What does HTML stand for?", a: ["Hyper Text Markup Language", "High Tech Modern Language", "Hyperlink Text Mode"], c: 0 },
+            { q: "Which CSS property changes text color?", a: ["text-style", "font-color", "color"], c: 2 },
+            { q: "Which symbol is used for IDs in CSS?", a: [".", "#", "&"], c: 1 },
+            { q: "Which is not a JavaScript data type?", a: ["String", "Boolean", "Float"], c: 2 },
+            { q: "What tag is used for JavaScript?", a: ["<js>", "<script>", "<javascript>"], c: 1 }
+        ];
+
+        let idx = 0;
+        let score = 0;
+        let selection = null;
+
+        function startQuiz() {
+            document.getElementById('start-page').classList.add('hidden');
+            document.getElementById('quiz-page').classList.remove('hidden');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            selection = null;
+            document.getElementById('next-btn').disabled = true;
+            
+            const current = questions[idx];
+            document.getElementById('question-text').innerText = current.q;
+            document.getElementById('progress-text').innerText = `Question ${idx + 1} of ${questions.length}`;
+
+            const box = document.getElementById('options-box');
+            box.innerHTML = '';
+
+            current.a.forEach((opt, i) => {
+                const btn = document.createElement('button');
+                btn.innerText = opt;
+                btn.className = 'option-btn';
+                btn.onclick = function() {
+                    const all = document.querySelectorAll('.option-btn');
+                    all.forEach(b => b.classList.remove('selected'));
+                    btn.classList.add('selected');
+                    selection = i;
+                    document.getElementById('next-btn').disabled = false;
+                };
+                box.appendChild(btn);
+            });
+        }
+
+        function nextQuestion() {
+            if (selection === questions[idx].c) {
+                score++;
+            }
+            idx++;
+            if (idx < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-page').classList.add('hidden');
+            document.getElementById('result-page').classList.remove('hidden');
+            document.getElementById('final-score').innerText = `${score} / ${questions.length}`;
+            
+            const msg = document.getElementById('message');
+            if (score === questions.length) msg.innerText = "Excellent! You're a pro! 🏆";
+            else if (score >= 3) msg.innerText = "Good job! 🌟";
+            else msg.innerText = "Keep practicing! 📚";
+        }
+    </script>
+</body>
+</html>
