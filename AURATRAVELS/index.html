@@ -1,49 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraTravels | Home</title>
     <style>
         :root {
             --gold: #c5a059;
             --soft-white: #fafafa;
             --charcoal: #2c2c2c;
+            --overlay: rgba(0, 0, 0, 0.6);
         }
-        body { font-family: 'Inter', sans-serif; background: var(--soft-white); color: var(--charcoal); margin: 0; }
-        .navbar { padding: 20px 10%; display: flex; justify-content: space-between; align-items: center; background: white; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: bold; }
+
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--soft-white); 
+            color: var(--charcoal); 
+            margin: 0; 
+            background-image: linear-gradient(var(--overlay), var(--overlay)), 
+                              url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2073&auto=format&fit=crop');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Enhanced Navbar with Links */
+        .navbar { 
+            padding: 15px 10%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            background: rgba(255, 255, 255, 0.98); 
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 1.6rem; 
+            font-weight: bold; 
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .nav-links { display: flex; gap: 30px; }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; padding: 50px 10%; }
-        .card { border: 1px solid #eee; border-radius: 20px; overflow: hidden; background: white; transition: 0.4s ease; }
-        .card:hover { transform: scale(1.02); border-color: var(--gold); }
-        .card img { width: 100%; height: 250px; object-fit: cover; }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--charcoal);
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--gold); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .subtitle { color: rgba(255,255,255,0.8); margin-bottom: 50px; }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .card { 
+            background: white; 
+            border-radius: 15px; 
+            overflow: hidden; 
+            text-align: left;
+            transition: 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        .card:hover { transform: translateY(-10px); }
+
+        .card img { width: 100%; height: 230px; object-fit: cover; }
+
         .info { padding: 25px; }
-        .aura-tag { font-size: 0.8rem; text-transform: uppercase; color: var(--gold); letter-spacing: 2px; }
+
+        .aura-tag { color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; }
+
+        .price-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Book Now Button Style */
+        .btn-book {
+            background: var(--charcoal);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+
+        .btn-book:hover { background: var(--gold); }
     </style>
 </head>
 <body>
+
     <nav class="navbar">
-        <div class="logo">AuraTravels</div>
+        <a href="index.html" class="logo">AURATRAVELS</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="booking.html">Book Now</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
-    <div class="grid" id="destinations-grid">
-        </div>
+    <div class="container">
+        <h1 class="section-title">Luxury Escapes</h1>
+        <p class="subtitle">Handpicked Australian rentals for the soul.</p>
+        
+        <div class="grid" id="destinations-grid">
+            </div>
+    </div>
 
     <script>
         async function fetchTrips() {
-            const response = await fetch('/api/destinations');
-            const trips = await response.json();
-            const grid = document.getElementById('destinations-grid');
+            try {
+                // Fetching from your destination.py API
+                const response = await fetch('/api/destinations');
+                const trips = await response.json();
+                const grid = document.getElementById('destinations-grid');
 
-            grid.innerHTML = trips.map(trip => `
-                <div class="card">
-                    <img src="${trip.image_url}" alt="${trip.name}">
-                    <div class="info">
-                        <span class="aura-tag">${trip.aura}</span>
-                        <h3>${trip.name}</h3>
-                        <p>${trip.location}</p>
-                        <p><strong>${trip.price}</strong> / night</p>
+                grid.innerHTML = trips.map(trip => `
+                    <div class="card">
+                        <img src="${trip.image_url}" alt="${trip.name}">
+                        <div class="info">
+                            <span class="aura-tag">${trip.aura}</span>
+                            <h3>${trip.name}</h3>
+                            <p style="margin: 5px 0; font-size: 0.9rem; color: #777;">${trip.location}</p>
+                            <div class="price-row">
+                                <span><strong>${trip.price}</strong> / night</span>
+                                <a href="booking.html" class="btn-book">Book Now</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            `).join('');
+                `).join('');
+            } catch (error) {
+                console.error("Connection to backend failed. Check destination.py", error);
+            }
         }
         fetchTrips();
     </script>
