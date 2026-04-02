@@ -2,53 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Story | AuraTravels</title>
-    <link rel="stylesheet" href="style.css">
+    <title>About | AuraTravels</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        :root { --gold: #c5a059; --charcoal: #2c2c2c; }
+        body { font-family: 'Inter', sans-serif; margin: 0; background: #fafafa; color: var(--charcoal); }
+        .navbar { padding: 20px 10%; display: flex; justify-content: space-between; background: white; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .navbar a { text-decoration: none; color: var(--charcoal); margin-left: 20px; font-weight: 500; }
+        .content { max-width: 800px; margin: 80px auto; padding: 0 20px; text-align: center; line-height: 1.6; }
+        h1 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 3rem; }
+    </style>
 </head>
-<body data-theme="light">
-    <nav>
-        <div class="logo">Aura<span>Travels</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html" class="active">About</a></li>
-            <li><a href="booking.html">Book Now</a></li>
-        </ul>
+<body>
+    <nav class="navbar">
+        <a href="index.html" style="font-weight: bold; font-size: 1.2rem;">AURATRAVELS</a>
+        <div>
+            <a href="index.html">Home</a>
+            <a href="about.html" style="color: var(--gold)">About</a>
+            <a href="booking.html">Book Now</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </nav>
 
-    <section class="about-hero">
-        <h1>Redefining the <span>Travel Vibe</span></h1>
-        <p>Founded in 2026, AuraTravels was built on a simple idea: Travel shouldn't just be about places, it should be about energy.</p>
-    </section>
-
-    <section class="stats-container">
-        <div class="stat-card">
-            <h2>12k+</h2>
-            <p>Global Explorers</p>
-        </div>
-        <div class="stat-card">
-            <h2>45</h2>
-            <p>Hidden Gems Found</p>
-        </div>
-        <div class="stat-card">
-            <h2>99%</h2>
-            <p>Positive Vibe Rating</p>
-        </div>
-    </section>
-
-    <section class="team-section">
-        <h2 class="section-title">The Curators</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <div class="member-img"></div>
-                <h4>Alex Rivera</h4>
-                <p>Chief Vibe Officer</p>
-            </div>
-            </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 AuraTravels. All rights reserved.</p>
-    </footer>
+    <div class="content">
+        <h1>Our Story</h1>
+        <p>AuraTravels is a premier, Australian-owned marketplace dedicated to connecting travelers with unique, soul-stirring holiday rentals across the continent.</p>
+        <p>From the rugged coastlines of Western Australia to the hidden gems of the Blue Mountains, we curate "Aura-certified" stays that provide more than just a bed—they provide an experience.</p>
+    </div>
 </body>
 </html>
