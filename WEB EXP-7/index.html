@@ -1,0 +1,60 @@
+<!--
+Project Title: E-Commerce Website
+Name: Your Name
+Date: 2026
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header>
+    <nav class="navbar">
+        <h1>ShopEase</h1>
+        <button onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
+    </nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <h2>Welcome to ShopEase</h2>
+    <p>Your one-stop shop for amazing products</p>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="product-list"></section>
+
+<!-- CART -->
+<section class="cart hidden" id="cart">
+    <h2>Your Cart</h2>
+    <div id="cart-items"></div>
+    <h3>Total: ₹<span id="cart-total">0</span></h3>
+    <button onclick="showCheckout()">Checkout</button>
+</section>
+
+<!-- CHECKOUT -->
+<section class="checkout hidden" id="checkout">
+    <h2>Checkout</h2>
+    <form onsubmit="placeOrder(event)">
+        <input type="text" id="name" placeholder="Your Name" required>
+        <input type="text" id="address" placeholder="Address (optional)">
+        <button type="submit">Place Order</button>
+    </form>
+</section>
+
+<!-- CONFIRMATION -->
+<section class="confirmation hidden" id="confirmation">
+    <h2>Order Placed Successfully 🎉</h2>
+    <p id="order-summary"></p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+/* GENERAL STYLING */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+}
+
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background: #333;
+    color: white;
+    padding: 15px;
+}
+
+.navbar button {
+    background: orange;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+}
+
+/* PRODUCTS GRID */
+.products {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    padding: 20px;
+    gap: 20px;
+}
+
+/* PRODUCT CARD */
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.card button {
+    background: green;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+/* CART */
+.cart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 300px;
+    background: white;
+    height: 100%;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+}
+
+.hidden {
+    display: none;
+}
+
+/* CHECKOUT */
+.checkout {
+    padding: 20px;
+    background: white;
+}
+
+.checkout input {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+
+/* BUTTON HOVER */
+button:hover {
+    opacity: 0.8;
+}
